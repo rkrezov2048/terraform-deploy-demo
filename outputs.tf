@@ -17,3 +17,7 @@ output "subnet_group" {
 output "security_rds" {
   value = module.vpc_demo_1.db_sg
 }
+
+output "security_public" {
+  value = module.vpc_demo_1.public_sg
+}

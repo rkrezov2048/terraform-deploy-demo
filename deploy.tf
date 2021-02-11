@@ -28,9 +28,16 @@ module "database_rds" {
 
 
 module "name" {
-  source = ""
+  source = "github.com/rkrezov2048/terraform-module-demo/loadbalancer"
 
-  public_subnets = ""
-  public_sg = ""
-  
+  public_subnets         = module.vpc_demo_1.public_sub
+  public_sg              = module.vpc_demo_1.db_sg
+  tg_port                = "80"
+  tg_protocol            = "HTTP"
+  vpc_id                 = ""
+  lb_healthy_threshold   = "2"
+  lb_unhealthy_threshold = "2"
+  lb_timeout             = "2"
+  interval               = "30"
+
 }

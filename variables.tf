@@ -7,7 +7,7 @@ variable "access_ip" {
 }
 
 variable "dbuser" {
-  type = string
+  type      = string
   sensitive = true
 }
 
@@ -16,6 +16,6 @@ variable "dbname" {
 }
 
 variable "dbpass" {
-  type = string
+  type      = string
   sensitive = true
 }
