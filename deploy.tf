@@ -21,7 +21,16 @@ module "database_rds" {
   db_password            = var.dbpass
   vpc_security_group_ids = module.vpc_demo_1.db_sg
   db_identifier          = "mtc-db"
-  db_subnet_group_name   = module.vpc_demo_1.subnet_group[0]
+  db_subnet_group_name   = module.vpc_demo_1.db_subnet_group[0]
   skip_final_snapshot    = true
 
+}
+
+
+module "name" {
+  source = ""
+
+  public_subnets = ""
+  public_sg = ""
+  
 }
