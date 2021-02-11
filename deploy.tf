@@ -34,7 +34,7 @@ module "name" {
   public_sg              = module.vpc_demo_1.db_sg
   tg_port                = "80"
   tg_protocol            = "HTTP"
-  vpc_id                 = ""
+  vpc_id                 = module.vpc_demo_1.vpc_id
   lb_healthy_threshold   = "2"
   lb_unhealthy_threshold = "2"
   lb_timeout             = "2"
