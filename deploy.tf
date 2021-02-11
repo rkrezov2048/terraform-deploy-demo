@@ -10,7 +10,3 @@ module "vpc_demo_1" {
 
 }
 
-
-output "vpc_id" {
-  value = module.vpc_demo_1.vpc_id
-}
