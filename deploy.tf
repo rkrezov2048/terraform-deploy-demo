@@ -39,5 +39,6 @@ module "name" {
   lb_unhealthy_threshold = "2"
   lb_timeout             = "2"
   interval               = "30"
-
+  listener_port          = "80"
+  listener_protocol      = "HTTP"
 }
