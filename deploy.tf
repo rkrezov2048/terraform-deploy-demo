@@ -12,16 +12,16 @@ module "vpc_demo_1" {
 }
 
 module "database_rds" {
-  source                 = ""
+  source                 = "github.com/rkrezov2048/terraform-module-demo/database"
   db_storage             = 10
   db_instance_class      = "db.t2.micro"
   db_engine_version      = "5.7.22"
   db_name                = "rancher"
   db_username            = "john"
   db_password            = "tempus435"
-  vpc_security_group_ids = module.vpc_demo_1.security_rds
+  vpc_security_group_ids = module.vpc_demo_1.db_sg
   db_identifier          = "mtc-db"
-  db_subnet_group_name   = module.vpc_demo_1.subnet_group[0]
+  db_subnet_group_name   = module.vpc_demo_1.db_subnet_group[0]
   skip_final_snapshot    = true
 
 }
