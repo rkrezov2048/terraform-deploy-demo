@@ -59,4 +59,5 @@ module "ec2" {
   dbpass           = var.dbpass
   db_endpoint      = module.database_rds.endpoint
   target_group_arn = module.loadbalancer.target_group_arn
+  tg_port          = 8000
 }
