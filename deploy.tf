@@ -46,8 +46,9 @@ module "loadbalancer" {
 module "ec2" {
   source = "github.com/rkrezov2048/terraform-module-demo/compute"
   instance_count = 1
-  instance_type = t3.micro
+  instance_type = "t3.micro"
   public_sg = module.vpc_demo_1.public_sg
   subnet_id = module.vpc_demo_1.public_sub
   vol_size = 10
+  additional_tags = local.additional_tags
 }
