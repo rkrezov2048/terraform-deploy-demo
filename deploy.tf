@@ -44,18 +44,19 @@ module "loadbalancer" {
 }
 
 module "ec2" {
-  source          = "github.com/rkrezov2048/terraform-module-demo/compute"
-  instance_count  = 1
-  instance_type   = "t3.micro"
-  public_sg       = module.vpc_demo_1.public_sg
-  public_sub      = module.vpc_demo_1.public_sub
-  vol_size        = 10
-  additional_tags = local.additional_tags
-  key_name        = "terra_demo"
-  public_key_path = "/Users/rkzv/.ssh/terra_demo.pub"
-  used_data_path  = "${path.root}/userdata.tpl"
-  db_name                = var.dbname
-  db_username            = var.dbuser
-  db_password            = var.dbpass
-  db_endpoint            = module.database_rds.endpoint
+  source           = "github.com/rkrezov2048/terraform-module-demo/compute"
+  instance_count   = 2
+  instance_type    = "t3.micro"
+  public_sg        = module.vpc_demo_1.public_sg
+  public_sub       = module.vpc_demo_1.public_sub
+  vol_size         = 10
+  additional_tags  = local.additional_tags
+  key_name         = "terra_demo"
+  public_key_path  = "/Users/rkzv/.ssh/terra_demo.pub"
+  used_data_path   = "${path.root}/userdata.tpl"
+  dbname           = var.dbname
+  dbuser           = var.dbuser
+  dbpass           = var.dbpass
+  db_endpoint      = module.database_rds.endpoint
+  target_group_arn = module.loadbalancer.target_group_arn
 }
