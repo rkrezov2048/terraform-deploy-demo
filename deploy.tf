@@ -12,24 +12,24 @@ module "vpc_demo_1" {
 
 }
 
-module "database_rds" {
-  source                 = "github.com/rkrezov2048/terraform-module-demo/database"
-  db_storage             = 10
-  db_instance_class      = "db.t2.micro"
-  db_engine_version      = "5.7.22"
-  db_name                = var.dbname
-  db_username            = var.dbuser
-  db_password            = var.dbpass
-  vpc_security_group_ids = module.vpc_demo_1.db_sg
-  db_identifier          = "mtc-db"
-  db_subnet_group_name   = module.vpc_demo_1.db_subnet_group[0]
-  skip_final_snapshot    = true
+# module "database_rds" {
+#   source                 = "github.com/rkrezov2048/terraform-module-demo/database"
+#   db_storage             = 10
+#   db_instance_class      = "db.t2.micro"
+#   db_engine_version      = "5.7.22"
+#   db_name                = var.dbname
+#   db_username            = var.dbuser
+#   db_password            = var.dbpass
+#   vpc_security_group_ids = module.vpc_demo_1.db_sg
+#   db_identifier          = "mtc-db"
+#   db_subnet_group_name   = module.vpc_demo_1.db_subnet_group[0]
+#   skip_final_snapshot    = true
 
-}
+# }
 
 
 module "loadbalancer" {
-  source = "github.com/rkrezov2048/terraform-module-demo/loadbalancer"
+  source                 = "github.com/rkrezov2048/terraform-module-demo/loadbalancer"
   public_subnets         = module.vpc_demo_1.public_sub
   public_sg              = module.vpc_demo_1.db_sg
   tg_port                = 8080
@@ -44,11 +44,13 @@ module "loadbalancer" {
 }
 
 module "ec2" {
-  source = "github.com/rkrezov2048/terraform-module-demo/compute"
-  instance_count = 1
-  instance_type = "t3.micro"
-  public_sg = module.vpc_demo_1.public_sg
-  subnet_id = module.vpc_demo_1.public_sub
-  vol_size = 10
+  source          = "github.com/rkrezov2048/terraform-module-demo/compute"
+  instance_count  = 1
+  instance_type   = "t3.micro"
+  public_sg       = module.vpc_demo_1.public_sg
+  public_sub      = module.vpc_demo_1.public_sub
+  vol_size        = 10
   additional_tags = local.additional_tags
+  key_name        = "terra_demo"
+  public_key_path = "/Users/rkzv/.ssh/terra_demo.pub"
 }
