@@ -21,3 +21,12 @@ output "security_rds" {
 output "security_public" {
   value = module.vpc_demo_1.public_sg
 }
+
+output "lb_endpoint" {
+  value = module.loadbalancer.endpoint
+}
+
+output "instances" {
+  value = {for i in module.ec2.instance : i.tags.Name => i.public_ip}
+  sensitive = true
+}

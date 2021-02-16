@@ -31,7 +31,7 @@ module "database_rds" {
 module "loadbalancer" {
   source                 = "github.com/rkrezov2048/terraform-module-demo/loadbalancer"
   public_subnets         = module.vpc_demo_1.public_sub
-  public_sg              = module.vpc_demo_1.db_sg
+  public_sg              = module.vpc_demo_1.public_sg
   tg_port                = 8080
   tg_protocol            = "HTTP"
   vpc_id                 = module.vpc_demo_1.vpc_id
@@ -39,7 +39,7 @@ module "loadbalancer" {
   lb_unhealthy_threshold = "2"
   lb_timeout             = "2"
   interval               = "30"
-  listener_port          = 8000
+  listener_port          = 80
   listener_protocol      = "HTTP"
 }
 
