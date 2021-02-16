@@ -12,20 +12,20 @@ module "vpc_demo_1" {
 
 }
 
-# module "database_rds" {
-#   source                 = "github.com/rkrezov2048/terraform-module-demo/database"
-#   db_storage             = 10
-#   db_instance_class      = "db.t2.micro"
-#   db_engine_version      = "5.7.22"
-#   db_name                = var.dbname
-#   db_username            = var.dbuser
-#   db_password            = var.dbpass
-#   vpc_security_group_ids = module.vpc_demo_1.db_sg
-#   db_identifier          = "mtc-db"
-#   db_subnet_group_name   = module.vpc_demo_1.db_subnet_group[0]
-#   skip_final_snapshot    = true
+module "database_rds" {
+  source                 = "github.com/rkrezov2048/terraform-module-demo/database"
+  db_storage             = 10
+  db_instance_class      = "db.t2.micro"
+  db_engine_version      = "5.7.22"
+  db_name                = var.dbname
+  db_username            = var.dbuser
+  db_password            = var.dbpass
+  vpc_security_group_ids = module.vpc_demo_1.db_sg
+  db_identifier          = "mtc-db"
+  db_subnet_group_name   = module.vpc_demo_1.db_subnet_group[0]
+  skip_final_snapshot    = true
 
-# }
+}
 
 
 module "loadbalancer" {
@@ -53,4 +53,9 @@ module "ec2" {
   additional_tags = local.additional_tags
   key_name        = "terra_demo"
   public_key_path = "/Users/rkzv/.ssh/terra_demo.pub"
+  used_data_path  = "${path.root}/userdata.tpl"
+  db_name                = var.dbname
+  db_username            = var.dbuser
+  db_password            = var.dbpass
+  db_endpoint            = module.database_rds.endpoint
 }
