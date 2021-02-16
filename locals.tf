@@ -36,3 +36,12 @@ locals {
     }
   }
 }
+
+locals {
+  additional_tags = {
+    Environment = "Dev"
+    Owner       = "DevOps-Team"
+    Project     = "MailTastic"
+    App         = "SMTP-ReRouting"
+  }
+} 
