@@ -27,6 +27,6 @@ output "lb_endpoint" {
 }
 
 output "instances" {
-  value = {for i in module.ec2.instance : i.tags.Name => "${i.public_ip}:${module.ec2.instance_port}" }
+  value     = { for i in module.ec2.instance : i.tags.Name => "${i.public_ip}:${module.ec2.instance_port}" }
   sensitive = true
 }

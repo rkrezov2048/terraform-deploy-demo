@@ -18,13 +18,13 @@ locals {
           from        = 80
           to          = 80
           protocol    = "tcp"
-          cidr_blocks = [var.access_ip]
+          cidr_blocks = [var.public_access]
         }
         nginx = {
           from        = 8000
           to          = 8000
           protocol    = "tcp"
-          cidr_blocks = [var.access_ip]
+          cidr_blocks = [var.public_access]
         }
       }
     }
