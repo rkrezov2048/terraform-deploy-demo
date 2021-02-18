@@ -21,4 +21,5 @@ module "ecs" {
   asg_max_size                   = 2
   asg_desired_capacity           = 2
   asg_vpc_zone_identifier        = module.ecs_vpc_demo.public_sub
+  asg_tags                       = local.asg_tags
 }
