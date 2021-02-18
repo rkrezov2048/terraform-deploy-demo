@@ -28,6 +28,18 @@ locals {
         }
       }
     }
+    alb_ecs = {
+      name        = "alb_ecs_sg"
+      description = "Security group for the Loadbalancer"
+      ingress = {
+        mysql = {
+          from        = 0
+          to          = 0
+          protocol    = "-1"
+          cidr_blocks = [var.public_access]
+        }
+      }
+    }    
   }
 }
 
