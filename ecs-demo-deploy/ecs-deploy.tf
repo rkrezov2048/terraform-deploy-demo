@@ -21,5 +21,21 @@ module "ecs" {
   asg_max_size                   = 2
   asg_desired_capacity           = 2
   asg_vpc_zone_identifier        = module.ecs_vpc_demo.public_sub
+  asg_target_group_arns          = [module.alb.target_group_arn]
   asg_tags                       = local.asg_tags
+}
+
+module "alb" {
+  source                 = "github.com/rkrezov2048/terraform-module-demo/loadbalancer"
+  public_subnets         = module.ecs_vpc_demo.public_sub
+  public_sg              = module.ecs_vpc_demo.alb_sg
+  tg_port                = 80
+  tg_protocol            = "HTTP"
+  vpc_id                 = module.ecs_vpc_demo.vpc_id
+  lb_healthy_threshold   = "2"
+  lb_unhealthy_threshold = "2"
+  lb_timeout             = "2"
+  interval               = "30"
+  listener_port          = 80
+  listener_protocol      = "HTTP"
 }
