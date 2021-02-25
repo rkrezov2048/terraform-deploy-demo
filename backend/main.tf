@@ -41,7 +41,7 @@ resource "aws_iam_group_membership" "full_acc" {
 
 resource "aws_iam_group_membership" "bucket_read_acc" {
   name  = aws_iam_group.bucket_read_acc.name
-  users = var.full_access_users
+  users = var.read_only_users
   group = aws_iam_group.bucket_read_acc.name
 }
 

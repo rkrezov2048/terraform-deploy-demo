@@ -7,6 +7,6 @@ terraform {
 }
 
 provider "aws" {
-  profile = var.profile
+  profile = "dev-new"
   region  = var.aws_region
 }
