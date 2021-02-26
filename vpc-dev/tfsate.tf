@@ -1,9 +1,8 @@
 terraform {
   backend "s3" {
-    bucket         = "cognism-tfstate-90851"
+    bucket         = "dev-cognism-tfstate-test2431"
     key            = "dev/vpc-demo/terraform.tfstate"
     region         = "us-east-1"    
-    dynamodb_table = "cognism--dynamo-tf-backend"
   }
 }
 
