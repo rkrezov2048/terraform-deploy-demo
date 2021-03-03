@@ -1,0 +1,7 @@
+terraform {
+  backend "s3" {
+    bucket         = "dev-cognism-tfstate-test2431"
+    key            = "dev/alb-demo/terraform.tfstate"
+    region         = "us-east-1"
+  }
+}
