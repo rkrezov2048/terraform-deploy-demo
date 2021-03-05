@@ -1,4 +1,4 @@
-module "alb" {
+module "ecs-service-dev" {
   source                 = "github.com/rkrezov2048/terraform-module-demo/ecs-service"
   public_subnets         = data.terraform_remote_state.vpc_dev.outputs.public_sub
   public_sg              = data.terraform_remote_state.vpc_dev.outputs.security_public

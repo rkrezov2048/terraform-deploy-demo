@@ -1,16 +1,16 @@
-variable "name_prefix" {
-  default = "cognism"
-}
+# variable "name_prefix" {
+#   default = "cognism"
+# }
 
-variable "full_access_users" {
-  type    = list(any)
-  default = []
-}
+# variable "full_access_users" {
+#   type    = list(any)
+#   default = []
+# }
 
-variable "read_only_users" {
-  type    = list(any)
-  default = []
-}
+# variable "read_only_users" {
+#   type    = list(any)
+#   default = []
+# }
 
 variable "profile" {
   type    = string

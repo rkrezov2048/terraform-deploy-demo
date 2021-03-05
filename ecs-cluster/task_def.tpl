@@ -1,13 +1,15 @@
 [
     {
-        "name": "${task_definition_name}",
+        "name": "${ecs_service_name}",
         "image": "${image_url}",
-        "cpu": "${cpu}",
-        "memory": "${memory}",
+        "cpu": ${cpu},
+        "memory": ${memory},
         "essential": true,
         "portMappings": [
             {
-                "containerPort": "${containerPort}"
+                "hostPort": 0,
+                "protocol": "tcp",
+                "containerPort": ${containerPort}
             }
         ],
         "logConfiguration": {
