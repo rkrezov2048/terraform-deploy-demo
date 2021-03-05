@@ -5,10 +5,12 @@ module "alb" {
   tg_port                = 80
   tg_protocol            = "HTTP"
   vpc_id                 = data.terraform_remote_state.vpc_dev.outputs.vpc_id
-  lb_healthy_threshold   = "2"
-  lb_unhealthy_threshold = "2"
-  lb_timeout             = "2"
-  interval               = "30"
+  tg_path                = "/"
+  tg_healthy_threshold   = 2
+  tg_unhealthy_threshold = 2
+  tg_timeout             = 2
+  tg_interval            = 30
   listener_port          = 80
+  tg_matcher             = "200"
   listener_protocol      = "HTTP"
 }
