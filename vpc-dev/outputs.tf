@@ -21,3 +21,16 @@ output "security_rds" {
 output "security_public" {
   value = module.vpc_demo_1.public_sg
 }
+
+
+output "sg_list" {
+  value = module.vpc_demo_1.sg
+}
+
+output "sg_name_list" {
+  value = module.vpc_demo_1.sg_name
+}
+
+output "sg_name_and_id_list" {
+  value = module.vpc_demo_1.sg_name_and_id
+}
