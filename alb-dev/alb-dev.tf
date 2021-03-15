@@ -1,7 +1,7 @@
 module "alb" {
   source                 = "github.com/rkrezov2048/terraform-module-demo/loadbalancer"
   public_subnets         = data.terraform_remote_state.vpc_dev.outputs.public_sub
-  public_sg              = data.terraform_remote_state.vpc_dev.outputs.security_public
+  public_sg              = [local.lb_sg]
   tg_port                = 80
   tg_protocol            = "HTTP"
   vpc_id                 = data.terraform_remote_state.vpc_dev.outputs.vpc_id

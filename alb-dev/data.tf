@@ -6,3 +6,7 @@ data "terraform_remote_state" "vpc_dev" {
     region = "us-east-1"
   }
 }
+
+locals {
+  lb_sg = lookup(data.terraform_remote_state.vpc_dev.outputs.sg_name_and_id_list, "public_sg")
+}
